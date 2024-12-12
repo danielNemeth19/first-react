@@ -2,11 +2,12 @@ import { createRoot } from "react-dom/client"
 
 const root = createRoot(document.getElementById("root"))
 
-function ReactFactsCard() {
+function ReactFactsCard({greet}) {
+    console.log(greet)
     return(
         <main>
             <img src="vite.svg" width="40px" alt="Vite logo"/>
-            <h1>Fun facts about React</h1>
+            <h1>Fun facts about React {greet}</h1>
             <ul>
                 <li>Was first released in 2013</li>
                 <li>Was originally created by Jordan Walke</li>
@@ -19,6 +20,6 @@ function ReactFactsCard() {
 }
 
 root.render(
-    <ReactFactsCard />
+    <ReactFactsCard greet="hello" />
 )
 
