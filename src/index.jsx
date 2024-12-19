@@ -1,25 +1,22 @@
 import { createRoot } from "react-dom/client"
+import Header from "./header"
+import MainContent from "./maincontent"
+import Footer from "./footer"
+// import { Fragment } from "react" -- the empty <> in root.render basically creates a Fragment element, whithout the need of importing it
 
 const root = createRoot(document.getElementById("root"))
 
-function ReactFactsCard({greet}) {
-    console.log(greet)
-    return(
-        <main>
-            <img src="vite.svg" width="40px" alt="Vite logo"/>
-            <h1>Fun facts about React {greet}</h1>
-            <ul>
-                <li>Was first released in 2013</li>
-                <li>Was originally created by Jordan Walke</li>
-                <li>Has well over 200k starts on Github</li>
-                <li>Is maintained by Meta</li>
-                <li>Powers thousands of enterprise apps, including mobile apps</li>
-            </ul>
-        </main>
+function Page({ library }) {
+    return (
+        <>
+            <Header />
+            <MainContent library={library} />
+            <Footer />
+        </>
     )
 }
 
 root.render(
-    <ReactFactsCard greet="hello" />
+    <Page library="React" />
 )
 
