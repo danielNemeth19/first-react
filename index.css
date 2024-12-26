@@ -1,30 +1,61 @@
 body {
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #27292c;
+    margin: 0;
+    font-family: Inter;
+    background-color: #282D35;
     color: white;
-}
-
-h1 {
-    margin-top: 30px;
+    /* background: #27292c; */
 }
 
 .header {
+    height: 90px;
+    padding: 30px 25px;
+    background: #21222A;
+}
+
+nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    height: 100%;
 }
 
 .nav-logo {
-    width: 55px;
+    width: 40px;
+    margin-right: 7px;
 }
 
-.nav-list {
-    list-style: none;
-    display: flex;
+.logo-text {
+    font-size: 1.4rem;
+    /* per design, it's 22.25px to get rem divide by 16 */
+    font-weight: 700;
+    color: #61DAFB;
 }
 
-.nav-list-item {
-    margin-left: 10px;
-    font-size: 1.1rem;
+main {
+    padding: 60px 30px;
+    background-image: url("/images/react-logo-2.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 70%;
+}
+
+
+h1 {
+    font-size: 2.4rem;
+    margin: 0;
+    margin-left: 27px;
+}
+
+.facts-list {
+    margin-top: 46px;
+}
+
+.facts-list>li {
+    padding-block: 10px;
+    line-height: 19px;
+    font-size: 1rem;
+}
+
+.facts-list>li::marker {
+    color: #61DAFB;
+    font-size: 1.5rem;
 }
