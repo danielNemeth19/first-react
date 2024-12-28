@@ -1,11 +1,13 @@
-import NavBar from "./components/navbar.jsx"
-import Main from "./components/main.jsx"
+import Header from "./components/header.jsx"
+import Entry from "./components/entry.jsx"
 
 export default function App() {
     return (
         <>
-            <NavBar />
-            <Main />
+            <Header />
+            <main className="container">
+                <Entry />
+            </main >
         </>
     )
 }

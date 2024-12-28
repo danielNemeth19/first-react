@@ -1,61 +1,77 @@
+html,
 body {
     margin: 0;
     font-family: Inter;
-    background-color: #282D35;
+}
+
+header {
+    height: 55px;
+    background-color: #F55A5A;
     color: white;
-    /* background: #27292c; */
-}
-
-.header {
-    height: 90px;
-    padding: 30px 25px;
-    background: #21222A;
-}
-
-nav {
     display: flex;
+    justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
-.nav-logo {
-    width: 40px;
+.logo {
+    width: 24px;
     margin-right: 7px;
 }
 
-.logo-text {
-    font-size: 1.4rem;
-    /* per design, it's 22.25px to get rem divide by 16 */
-    font-weight: 700;
-    color: #61DAFB;
+header>h1 {
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
-main {
-    padding: 60px 30px;
-    background-image: url("/images/react-logo-2.png");
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: 70%;
+.container {
+    margin: 45px 40px;
 }
 
-
-h1 {
-    font-size: 2.4rem;
-    margin: 0;
-    margin-left: 27px;
+article.journal-entry {
+    display: flex;
 }
 
-.facts-list {
-    margin-top: 46px;
+article.journal-entry .marker {
+    width: 7px;
+    height: 9.55px;
+    margin-right: 4px;
 }
 
-.facts-list>li {
-    padding-block: 10px;
-    line-height: 19px;
-    font-size: 1rem;
+article.journal-entry .main-image {
+    height: 168px;
+    width: 125px;
+    margin-right: 19px;
 }
 
-.facts-list>li::marker {
-    color: #61DAFB;
-    font-size: 1.5rem;
+.info-container span.country {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-right: 12px;
+}
+
+.info-container a {
+    color: #2B283A;
+    font-size: 0.7rem;
+}
+
+.info-container a:visited {
+    color: #918E9B;
+}
+
+.info-container h2.entry-title {
+    margin-top: 7px;
+    margin-bottom: 17px;
+}
+
+.info-container p.trip-dates {
+    font-weight: bold;
+}
+
+.info-container p.entry-text {
+    line-height: 1.5;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
