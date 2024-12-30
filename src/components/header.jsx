@@ -4,6 +4,5 @@ export default function Header() {
             <img src="/images/Globe.png" alt="Globe" className="logo"/>
             <h1>my travel journal.</h1>
         </header>
-
     )
 }
