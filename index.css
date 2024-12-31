@@ -29,6 +29,7 @@ header>h1 {
 
 article.journal-entry {
     display: flex;
+    margin-bottom: 36px;
 }
 
 article.journal-entry .marker {
@@ -37,10 +38,19 @@ article.journal-entry .marker {
     margin-right: 4px;
 }
 
-article.journal-entry .main-image {
+article.journal-entry .main-image-container {
     height: 168px;
     width: 125px;
     margin-right: 19px;
+    overflow: hidden;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+article.journal-entry .main-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .info-container span.country {
