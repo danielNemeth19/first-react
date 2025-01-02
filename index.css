@@ -1,136 +1,71 @@
-html,
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
+    background-color: #FAFAF8;
 }
 
 header {
-    height: 55px;
-    background-color: #F55A5A;
-    color: white;
+    background-color: white;
+    height: 111px;
+    padding: 24px 16px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 11px;
 }
 
-.logo {
-    width: 24px;
-    margin-right: 7px;
+header>img {
+    width: 50px;
 }
 
 header>h1 {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 60px;
+    color: #141413
 }
 
-.container {
-    margin: 45px 40px;
+main {
+    height: 180px;
+    padding: 30px 30px 10px 30px;
 }
 
-article.journal-entry {
-    display: flex;
-    margin-bottom: 36px;
-}
-
-article.journal-entry .marker {
-    width: 7px;
-    height: 9.55px;
-    margin-right: 4px;
-}
-
-article.journal-entry .main-image-container {
-    height: 168px;
-    width: 125px;
-    margin-right: 19px;
-    overflow: hidden;
-    border-radius: 5px;
-    flex-shrink: 0;
-}
-
-article.journal-entry .main-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.info-container span.country {
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    margin-right: 12px;
-}
-
-.info-container a {
-    color: #2B283A;
-    font-size: 0.7rem;
-}
-
-.info-container a:visited {
-    color: #918E9B;
-}
-
-.info-container h2.entry-title {
-    margin-top: 7px;
-    margin-bottom: 17px;
-}
-
-.info-container p.trip-dates {
-    font-weight: bold;
-}
-
-.info-container p.entry-text {
-    line-height: 1.5;
-    font-size: 0.8rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.contacts {
+.add-ingredient-form {
+    height: 38px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
+    gap: 12px;
 }
 
-.contact-card {
-    flex-basis: 225px;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 13px;
-    padding-bottom: 20px;
-    background-color: white;
+.add-ingredient-form>input {
+    border-radius: 6px;
+    border: solid 1px #D1D5DB; 
+    padding: 9px 13px;
+    font-size: 14px;
+    font-weight: 400;
+    flex-grow: 1;
+    min-width: 150px;
+    max-width: 400px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 }
 
-.contact-card > img {
-    width: 100%;
-    height: auto;
-    align-self: center;
-    border-radius: 5px;
-    object-fit: cover;
+.add-ingredient-form>button {
+    font-family: Inter, sans-serif;
+    color: #FAFAF8;
+    background-color: #141413;
+    font-weight: 500;
+    font-size: 0.875rem;
+    width: 150px;
+    padding: 9px 17px;
+    border-radius: 6px;
+    border: none;
 }
 
-.contact-card > h3 {
-    font-size: 18px;
-    font-weight: 700;
+.add-ingredient-form>button::before {
+    content: "+";
+    margin-right: 5px;
 }
-
-.info-group {
-    display: flex;
-    align-items: center;
-}
-
-.info-group > img {
-    height: 11px;
-    margin-right: 7px;
-}
-
-
-.info-group > p {
-    margin-block: 7px;
-    font-size: 12px;
-    color: #2B283A
-}
-

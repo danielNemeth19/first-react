@@ -1,0 +1,136 @@
+html,
+body {
+    margin: 0;
+    font-family: Inter;
+}
+
+header {
+    height: 55px;
+    background-color: #F55A5A;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 24px;
+    margin-right: 7px;
+}
+
+header>h1 {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.container {
+    margin: 45px 40px;
+}
+
+article.journal-entry {
+    display: flex;
+    margin-bottom: 36px;
+}
+
+article.journal-entry .marker {
+    width: 7px;
+    height: 9.55px;
+    margin-right: 4px;
+}
+
+article.journal-entry .main-image-container {
+    height: 168px;
+    width: 125px;
+    margin-right: 19px;
+    overflow: hidden;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+article.journal-entry .main-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.info-container span.country {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-right: 12px;
+}
+
+.info-container a {
+    color: #2B283A;
+    font-size: 0.7rem;
+}
+
+.info-container a:visited {
+    color: #918E9B;
+}
+
+.info-container h2.entry-title {
+    margin-top: 7px;
+    margin-bottom: 17px;
+}
+
+.info-container p.trip-dates {
+    font-weight: bold;
+}
+
+.info-container p.entry-text {
+    line-height: 1.5;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.contact-card {
+    flex-basis: 225px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 13px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+.contact-card > img {
+    width: 100%;
+    height: auto;
+    align-self: center;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.contact-card > h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.info-group {
+    display: flex;
+    align-items: center;
+}
+
+.info-group > img {
+    height: 11px;
+    margin-right: 7px;
+}
+
+
+.info-group > p {
+    margin-block: 7px;
+    font-size: 12px;
+    color: #2B283A
+}
+
