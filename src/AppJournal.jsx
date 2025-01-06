@@ -1,6 +1,7 @@
-import Header from "./components/header.jsx"
+import Header from "./components/header_journal.jsx"
 import Entry from "./components/entry.jsx"
 import data from "./data.js"
+import "./index_journal.css"
 
 export default function AppJournal() {
     const dataItems = data.map(
