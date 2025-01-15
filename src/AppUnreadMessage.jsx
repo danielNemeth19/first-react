@@ -5,16 +5,14 @@ export default function App() {
     console.log(unreadMessages)
 
     function setMessage(num_msg) {
-        if (num_msg == 0 ) {
+        if (num_msg == 0) {
             return "You are all caught up!!"
-        } else if (num_msg === 1){
+        } else if (num_msg === 1) {
             return "You have 1 unread message!"
-        } else {
-            return `You have ${num_msg} unread message!`
         }
-
-        return num_msg == 1 ? <h1>You have {num_msg} message!</h1> : <h1>You have {num_msg} messages!</h1> 
+        return `You have ${num_msg} unread message!`
     }
+
     return (
         <main>
             <div>

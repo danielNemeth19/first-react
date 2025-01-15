@@ -1,4 +1,5 @@
 import React from "react"
+import Count from "./components/count.jsx"
 import "./index_state.css"
 
 export default function App() {
@@ -35,11 +36,11 @@ export default function App() {
             <h1>How many times will Bob say "state" in this section?</h1>
             <div className="counter">
                 <button onClick={modifyCount} className="minus" aria-label="Decrease count">–</button>
-                <h2 className="count">{count}</h2>
+                <Count count={count}/>
                 <button onClick={add} className="plus" aria-label="Increase count">+</button>
             </div>
             <div>
-                <h2 className="title">Do I feel like going out tonight?</h2>
+                <h1 className="title">Do I feel like going out tonight?</h1>
                 <button
                     onClick={changeMind}
                     className="value"
