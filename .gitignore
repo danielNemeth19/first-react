@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# for assets downloaded from scrimba
+/untar
+
+.env
