@@ -1,7 +1,7 @@
 import React from "react"
 import IngredientsList from "./IngredientsList.jsx"
 import Recipe from "./ClaudeRecipe.jsx"
-import { query } from "./ai.js"
+import { query, getRecipeFromMistral } from "./ai.js"
 
 export default function Main() {
     const [ingredients, setIngredients] = React.useState([]) 
@@ -14,13 +14,11 @@ export default function Main() {
 
     async function handleRecipeButton() {
         try {
-            const resp = await query(ingredients)
-            console.log(resp[0]["generated_text"])
-            setRecipe(resp[0]["generated_text"])
+            const resp = await getRecipeFromMistral(ingredients)
+            setRecipe(resp)
         } catch (error) {
             console.error("error fetching recipe: ", error)
         }
-        // setRecipeShown(prev => (!prev))
     }
 
     return (
