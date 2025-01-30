@@ -9,7 +9,7 @@ export default function Main() {
             imageUrl: "http://i.imgflip.com/1bij.jpg"
         })
 
-    const [memes, setMemes] = React.useState([])
+    const [allMemes, setMemes] = React.useState([])
 
     React.useEffect(()=> {
         fetch("https://api.imgflip.com/get_memes")
@@ -17,14 +17,20 @@ export default function Main() {
             .then(jsonResp => setMemes(jsonResp.data.memes))
     }, [])
 
-    console.log(memes.length)
-    console.log(memes[10])
-
     function handleChange(event) {
         let {name, value} = event.target
         setMeme(prevMeme => ({
             ...prevMeme,
             [name]: value
+        }))
+    }
+
+    function setRandomImage(){
+        let randomIdx = Math.floor(Math.random() * (allMemes.length - 0 + 1)) + 0
+        let mem = allMemes[randomIdx]
+        setMeme(prevMem => ({
+            ...prevMem,
+            imageUrl: mem.url
         }))
     }
 
@@ -50,7 +56,7 @@ export default function Main() {
                         value={meme.bottomText}
                     />
                 </label>
-                <button>Get a new meme image 🖼</button>
+                <button onClick={setRandomImage}>Get a new meme image 🖼</button>
             </div>
             <div className="meme">
                 <img src={meme.imageUrl} />

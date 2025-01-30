@@ -7,7 +7,7 @@ export default function App() {
 
     return (
         <main className="container">
-            <button onClick={ ()=> setShow(prev => !prev)}>
+            <button onClick={ () => setShow(prev => !prev)}>
                 Toggle WindowTracker
             </button>
             { show && <WindowTracker />}
