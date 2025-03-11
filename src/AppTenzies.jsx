@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { nanoid } from "nanoid"
 import "./index_tenzies.css"
 import Die from "./components/Die.jsx"
 
@@ -8,14 +9,18 @@ export default function AppTenzies() {
 
     function generateAllNewDice() {
         const max = 6;
-        return new Array(10).fill(0).map(() => Math.ceil(Math.random() * max))
+        return new Array(10).fill(0).map(() => ({
+            value: Math.ceil(Math.random() * max),
+            isHeld: true,
+            id: nanoid(),
+        }))
     }
 
-    function rollDice(){
+    function rollDice() {
         setDice(generateAllNewDice())
     }
 
-    const diceElements = dice.map((item, i) => <Die key={i} value={item} />)
+    const diceElements = dice.map((die) => <Die key={die.id} value={die.value} isHeld={die.isHeld} />)
 
     return (
         <main>
