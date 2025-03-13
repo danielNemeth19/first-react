@@ -1,19 +1,8 @@
 export default function Die(props) {
-    console.log(props)
-
-    const render_btn = () => {
-        if (props.isHeld) {
-            return (
-                <button className="held">{props.value}</button>
-            )
-        } else {
-            return (
-                <button >{props.value}</button>
-            )
-        }
+    const styles = {
+        backgroundColor: props.isHeld ? "#59E391" : "white"
     }
-
     return (
-        render_btn()
+        <button style={styles} onClick={()=> props.handler(props.id)} >{props.value}</button>
     )
 }
