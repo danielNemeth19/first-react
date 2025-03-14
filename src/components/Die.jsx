@@ -3,6 +3,12 @@ export default function Die(props) {
         backgroundColor: props.isHeld ? "#59E391" : "white"
     }
     return (
-        <button style={styles} onClick={()=> props.handler(props.id)} >{props.value}</button>
+        <button
+            style={styles}
+            onClick={() => props.handler(props.id)}
+            aria-pressed={props.isHeld}
+            aria-label={`Die with value ${props.value},
+                ${props.isHeld ? "held" : "not held"}`}
+        >{props.value}</button>
     )
 }
