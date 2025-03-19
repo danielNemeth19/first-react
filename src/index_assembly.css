@@ -50,3 +50,18 @@ section.game-status {
     font-family: "Hanken Grotesk", Arial, sans-serif;
     margin: 5px;
 }
+
+section.language-chips {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 350px;
+    justify-content: center;
+    gap: 5px;
+}
+
+span.chip {
+    border-radius: 3px;
+    padding: 4.5px;
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+    font-weight: 700;
+}
