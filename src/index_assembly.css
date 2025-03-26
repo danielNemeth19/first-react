@@ -17,13 +17,13 @@ header {
     text-align: center;
 }
 
-header > h1 {
+header>h1 {
     font-size: 1.25rem;
     font-weight: 500;
     color: #F9F4DA;
 }
 
-header > p {
+header>p {
     font-size: 0.875rem;
     max-width: 350px;
     color: #8E8E8E;
@@ -39,13 +39,13 @@ section.game-status {
     margin-block: 30px;
 }
 
-.game-status > h2 {
+.game-status>h2 {
     font-size: 1.25rem;
     font-family: "Hanken Grotesk", Arial, sans-serif;
     margin: 5px;
 }
 
-.game-status > p {
+.game-status>p {
     font-size: 16px;
     font-family: "Hanken Grotesk", Arial, sans-serif;
     margin: 5px;
@@ -57,6 +57,7 @@ section.language-chips {
     max-width: 350px;
     justify-content: center;
     gap: 5px;
+    margin-bottom: 36px;
 }
 
 span.chip {
@@ -64,4 +65,24 @@ span.chip {
     padding: 4.5px;
     font-family: "Hanken Grotesk", Arial, sans-serif;
     font-weight: 700;
+}
+
+section.word {
+    display: flex;
+    justify-content: center;
+    width: 334px;
+    height: 40px;
+    gap: 2px;
+}
+
+section.word>span {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    background-color: #323232;
+    font-size: 1.125rem;
+    border-bottom: 1px solid #F9F4DA;
 }

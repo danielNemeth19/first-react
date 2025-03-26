@@ -3,7 +3,7 @@ import "./index_assembly.css"
 import { languages } from "./languages.js"
 
 export default function AppAssembly() {
-    const [word, setWord] = useState("react")
+    const [currentWord, setCurrentWord] = useState("react")
 
     const languagesChips = languages.map((language) => {
         const styles = {
@@ -13,11 +13,9 @@ export default function AppAssembly() {
         return <span key={language.name} className="chip" style={styles}>{language.name}</span>
     })
 
-    const wordArray = [];
-    for (let char of  word) {
-        wordArray.push(char)
-    }
-    console.log(wordArray)
+    const word = currentWord.split("").map((char, idx)=>{
+        return <span key={idx}>{char.toUpperCase()}</span>
+    })
 
     return (
         <main>
@@ -32,6 +30,9 @@ export default function AppAssembly() {
                 </section>
                 <section className="language-chips">
                     {languagesChips}
+                </section>
+                <section className="word">
+                    {word}
                 </section>
             </main>
         </main>
