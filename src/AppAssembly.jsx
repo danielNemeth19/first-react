@@ -5,7 +5,10 @@ import { languages } from "./languages.js"
 export default function AppAssembly() {
     const [currentWord, setCurrentWord] = useState("react")
 
-    const languagesChips = languages.map((language) => {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+
+    const languaeElements = languages.map((language) => {
         const styles = {
             color: language.color,
             backgroundColor: language.backgroundColor
@@ -13,8 +16,12 @@ export default function AppAssembly() {
         return <span key={language.name} className="chip" style={styles}>{language.name}</span>
     })
 
-    const word = currentWord.split("").map((char, idx)=>{
+    const letterElements = currentWord.split("").map((char, idx)=>{
         return <span key={idx}>{char.toUpperCase()}</span>
+    })
+
+    const keyboard = alphabet.split("").map((char) => {
+        return <button key={char}>{char}</button>
     })
 
     return (
@@ -29,10 +36,13 @@ export default function AppAssembly() {
                     <p>Well done! 🎉</p>
                 </section>
                 <section className="language-chips">
-                    {languagesChips}
+                    {languaeElements}
                 </section>
                 <section className="word">
-                    {word}
+                    {letterElements}
+                </section>
+                <section className="keyboard">
+                    {keyboard}
                 </section>
             </main>
         </main>

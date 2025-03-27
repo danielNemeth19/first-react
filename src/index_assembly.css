@@ -86,3 +86,19 @@ section.word>span {
     font-size: 1.125rem;
     border-bottom: 1px solid #F9F4DA;
 }
+
+section.keyboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 360px;
+    height: 136px;
+}
+
+section.keyboard>button {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #FCBA29;
+    border: 1px solid #D7D7D7;
+}
