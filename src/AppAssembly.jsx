@@ -1,11 +1,22 @@
 import { useState } from "react";
 import "./index_assembly.css"
 import { languages } from "./languages.js"
+import { clsx } from 'clsx'
 
 export default function AppAssembly() {
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
 
+    const wrongGuessCount = () => {
+        let i = 0
+        guessedLetters.map((char) => {
+            if (!currentWord.includes(char)) {
+                i += 1
+            }
+        })
+        return i
+    }
+    console.log(wrongGuessCount())
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     const languaeElements = languages.map((language) => {
@@ -17,41 +28,53 @@ export default function AppAssembly() {
     })
 
     const letterElements = currentWord.split("").map((char, idx) => {
-        return <span key={idx}>{char.toUpperCase()}</span>
+        const toShow = guessedLetters.includes(char) ? char.toUpperCase() : ""
+        return <span key={idx}>{toShow}</span>
     })
 
     function addGuessedLetter(char) {
-        setGuessedLetters(prev => {
-            return prev.includes(char) ? prev : [...prev, char]
-        })
-    }
-
-    const keyboardElements = alphabet.split("").map((char) => {
-                return <button onClick={() => addGuessedLetter(char)} key={char}>{char.toUpperCase()}</button>
+        if (guessedLetters.includes(char)) {
+            return guessedLetters
+        } else {
+            setGuessedLetters(prev => {
+                return prev.includes(char) ? prev : [...prev, char]
             })
-
-        return (
-            <main>
-                <header>
-                    <h1>Assembly: Endgame</h1>
-                    <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
-                </header>
-                <main>
-                    <section className="game-status">
-                        <h2>You win!</h2>
-                        <p>Well done! 🎉</p>
-                    </section>
-                    <section className="language-chips">
-                        {languaeElements}
-                    </section>
-                    <section className="word">
-                        {letterElements}
-                    </section>
-                    <section className="keyboard">
-                        {keyboardElements}
-                    </section>
-                    <button className="new-game">New Game</button>
-                </main>
-            </main>
-        )
+        }
     }
+
+    const keyboardElements = alphabet.split("").map(char => {
+        return <button
+            onClick={() => addGuessedLetter(char)}
+            key={char}
+            className={
+                clsx({
+                    "correct": currentWord.includes(char) && guessedLetters.includes(char),
+                    "wrong": !currentWord.includes(char) && guessedLetters.includes(char),
+                })
+            }
+        > {char.toUpperCase()}</button >
+    })
+
+    return (
+        <main>
+            <header>
+                <h1>Assembly: Endgame</h1>
+                <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
+            </header>
+            <section className="game-status">
+                <h2>You win!</h2>
+                <p>Well done! 🎉</p>
+            </section>
+            <section className="language-chips">
+                {languaeElements}
+            </section>
+            <section className="word">
+                {letterElements}
+            </section>
+            <section className="keyboard">
+                {keyboardElements}
+            </section>
+            <button className="new-game">New Game</button>
+        </main>
+    )
+}
