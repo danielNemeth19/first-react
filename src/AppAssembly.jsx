@@ -6,25 +6,34 @@ import { clsx } from 'clsx'
 export default function AppAssembly() {
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
+    const [isGameOver, setIsGameOver] = useState(false)
 
-    const wrongGuessCount = () => {
-        let i = 0
-        guessedLetters.map((char) => {
-            if (!currentWord.includes(char)) {
-                i += 1
-            }
-        })
-        return i
-    }
-    console.log(wrongGuessCount())
+    let availableGuesses = languages.length - 1;
+
+
+    const wrongGuessCount = guessedLetters.reduce((count, char) => {
+        return currentWord.includes(char) ? count : count + 1
+    }, 0)
+
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    const languaeElements = languages.map((language) => {
+    const languaeElements = languages.map((language, idx) => {
         const styles = {
             color: language.color,
             backgroundColor: language.backgroundColor
         }
-        return <span key={language.name} className="chip" style={styles}>{language.name}</span>
+        const isLostLanguage = idx < wrongGuessCount;
+        return (
+            <span
+                key={language.name}
+                className={
+                    clsx("chip", isLostLanguage && "lost")
+                }
+                style={styles}
+            >
+                {language.name}
+            </span>
+        )
     })
 
     const letterElements = currentWord.split("").map((char, idx) => {
@@ -39,6 +48,12 @@ export default function AppAssembly() {
             setGuessedLetters(prev => {
                 return prev.includes(char) ? prev : [...prev, char]
             })
+        }
+        if (!currentWord.includes(char)) {
+            availableGuesses =  availableGuesses -1 
+            console.log("left", availableGuesses)
+
+            setIsGameOver((prev) => prev - 1)
         }
     }
 
@@ -74,7 +89,7 @@ export default function AppAssembly() {
             <section className="keyboard">
                 {keyboardElements}
             </section>
-            <button className="new-game">New Game</button>
+            {isGameOver && <button className="new-game">New Game</button>}
         </main>
     )
 }
