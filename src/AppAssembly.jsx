@@ -6,14 +6,16 @@ import { clsx } from 'clsx'
 export default function AppAssembly() {
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
-    const [isGameOver, setIsGameOver] = useState(false)
 
-    let availableGuesses = languages.length - 1;
-
+    const availableGuesses = languages.length - 1;
 
     const wrongGuessCount = guessedLetters.reduce((count, char) => {
         return currentWord.includes(char) ? count : count + 1
     }, 0)
+
+    const isGameWon = currentWord.split("").every((char) => (guessedLetters.includes(char)))
+    const isGameLost = wrongGuessCount >= availableGuesses
+    const isGameOver = isGameWon || isGameLost
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -49,12 +51,6 @@ export default function AppAssembly() {
                 return prev.includes(char) ? prev : [...prev, char]
             })
         }
-        if (!currentWord.includes(char)) {
-            availableGuesses =  availableGuesses -1 
-            console.log("left", availableGuesses)
-
-            setIsGameOver((prev) => prev - 1)
-        }
     }
 
     const keyboardElements = alphabet.split("").map(char => {
@@ -77,8 +73,15 @@ export default function AppAssembly() {
                 <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
             </header>
             <section className="game-status">
-                <h2>You win!</h2>
-                <p>Well done! 🎉</p>
+                <h2></h2>
+                <p></p>
+                {
+                    isGameWon &&
+                    <>
+                        <h2>You win!</h2>
+                        <p>Well done! 🎉</p>
+                    </>
+                }
             </section>
             <section className="language-chips">
                 {languaeElements}
