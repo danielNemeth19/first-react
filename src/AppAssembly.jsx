@@ -72,14 +72,32 @@ export default function AppAssembly() {
                 <h1>Assembly: Endgame</h1>
                 <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
             </header>
-            <section className="game-status">
-                <h2></h2>
-                <p></p>
+            <section 
+                className={clsx(
+                    "game-status",
+                    isGameWon && "won",
+                    isGameLost && "lost"
+                )}
+            >
                 {
-                    isGameWon &&
+                    !isGameOver && 
                     <>
-                        <h2>You win!</h2>
-                        <p>Well done! 🎉</p>
+                    <h2></h2>
+                    <p></p>
+                    </>
+                }
+                {
+                    isGameWon && 
+                    <>
+                    <h2>You win!</h2>
+                    <p>Well done</p>
+                    </>
+                }
+                {
+                    isGameLost && 
+                    <>
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly</p>
                     </>
                 }
             </section>
