@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./index_assembly.css"
 import { languages } from "./languages.js"
 import { clsx } from 'clsx'
+import { getFarewellText } from "./utils.js";
 
 export default function AppAssembly() {
     const [currentWord, setCurrentWord] = useState("react")
@@ -12,6 +13,9 @@ export default function AppAssembly() {
     const wrongGuessCount = guessedLetters.reduce((count, char) => {
         return currentWord.includes(char) ? count : count + 1
     }, 0)
+
+    const value = guessedLetters.at(-1) // either undefined or value
+    const lostLanguage = value && !currentWord.includes(value)
 
     const isGameWon = currentWord.split("").every((char) => (guessedLetters.includes(char)))
     const isGameLost = wrongGuessCount >= availableGuesses
@@ -66,39 +70,36 @@ export default function AppAssembly() {
         > {char.toUpperCase()}</button >
     })
 
+    function renderGameStatus() {
+        let h2Text = null, pText = null
+        if (lostLanguage) {
+            let name = languages[wrongGuessCount - 1].name
+            pText = getFarewellText(name)
+        }
+        if (isGameWon) {
+            h2Text = "You win!"
+            pText = "Well done! 🎉"
+        } else if (isGameLost) {
+            h2Text = "Game over!"
+            pText = "You lose! Better start learning Assembly 😭"
+        }
+        return (
+            <>
+                <h2>{h2Text}</h2>
+                <p className={clsx(lostLanguage && "farewell-message")}>{pText}</p>
+            </>
+        )
+    }
+
     return (
         <main>
             <header>
                 <h1>Assembly: Endgame</h1>
                 <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
             </header>
-            <section 
-                className={clsx(
-                    "game-status",
-                    isGameWon && "won",
-                    isGameLost && "lost"
-                )}
-            >
+            <section className={clsx("game-status", isGameWon && "won", isGameLost && "lost", !isGameLost && lostLanguage && "farewell")}>
                 {
-                    !isGameOver && 
-                    <>
-                    <h2></h2>
-                    <p></p>
-                    </>
-                }
-                {
-                    isGameWon && 
-                    <>
-                    <h2>You win!</h2>
-                    <p>Well done</p>
-                    </>
-                }
-                {
-                    isGameLost && 
-                    <>
-                    <h2>Game over!</h2>
-                    <p>You lose! Better start learning Assembly</p>
-                    </>
+                    renderGameStatus()
                 }
             </section>
             <section className="language-chips">
