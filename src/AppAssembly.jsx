@@ -60,6 +60,9 @@ export default function AppAssembly() {
     const keyboardElements = alphabet.split("").map(char => {
         return <button
             onClick={() => addGuessedLetter(char)}
+            disabled={isGameOver}
+            // aria-disabled={guessedLetters.includes(char)}
+            // aria-label = {`letter: ${char}`}
             key={char}
             className={
                 clsx({
@@ -97,7 +100,7 @@ export default function AppAssembly() {
                 <h1>Assembly: Endgame</h1>
                 <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
             </header>
-            <section className={clsx("game-status", isGameWon && "won", isGameLost && "lost", !isGameLost && lostLanguage && "farewell")}>
+            <section aria-live="polite" role="status" className={clsx("game-status", isGameWon && "won", isGameLost && "lost", !isGameLost && lostLanguage && "farewell")}>
                 {
                     renderGameStatus()
                 }
@@ -108,6 +111,10 @@ export default function AppAssembly() {
             <section className="word">
                 {letterElements}
             </section>
+            <section className="sr-only" aria-live="polite" role="status">
+                <p>Current word: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter + "." : "blank.").join(" ")}</p>
+            </section>
+
             <section className="keyboard">
                 {keyboardElements}
             </section>
