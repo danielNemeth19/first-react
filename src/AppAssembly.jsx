@@ -14,8 +14,9 @@ export default function AppAssembly() {
         return currentWord.includes(char) ? count : count + 1
     }, 0)
 
-    const value = guessedLetters.at(-1) // either undefined or value
-    const lostLanguage = value && !currentWord.includes(value)
+    const lastGuessedLetter = guessedLetters.at(-1) // either undefined or value
+    const lostLanguage = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
+    const remainingGuesses = availableGuesses - wrongGuessCount
 
     const isGameWon = currentWord.split("").every((char) => (guessedLetters.includes(char)))
     const isGameLost = wrongGuessCount >= availableGuesses
@@ -111,7 +112,15 @@ export default function AppAssembly() {
             <section className="word">
                 {letterElements}
             </section>
+            {/* Combined visually-hidden aria-live region for status update */}
             <section className="sr-only" aria-live="polite" role="status">
+                <p>{
+                    currentWord.includes(lastGuessedLetter) ?
+                        `Correct! Letter ${lastGuessedLetter} is in the word.`:
+                        `Sorry the letter ${lastGuessedLetter} is not in the word`
+                }
+                    You have {remainingGuesses} attempts left.
+                </p>
                 <p>Current word: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter + "." : "blank.").join(" ")}</p>
             </section>
 
