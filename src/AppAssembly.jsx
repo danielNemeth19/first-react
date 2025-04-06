@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
-import "./index_assembly.css"
+import { useWindowSize } from "react-use";
 import { languages } from "./languages.js"
 import { clsx } from 'clsx'
-import { getFarewellText } from "./utils.js";
+import { getFarewellText, getRandomWord } from "./utils.js";
+import Confetti from "react-confetti"
+import "./index_assembly.css"
 
 export default function AppAssembly() {
-    const [currentWord, setCurrentWord] = useState("react")
+    const [currentWord, setCurrentWord] = useState(() => getRandomWord())
     const [guessedLetters, setGuessedLetters] = useState([])
 
     const availableGuesses = languages.length - 1;
@@ -24,7 +26,7 @@ export default function AppAssembly() {
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    const languaeElements = languages.map((language, idx) => {
+    const languageElements = languages.map((language, idx) => {
         const styles = {
             color: language.color,
             backgroundColor: language.backgroundColor
@@ -44,8 +46,11 @@ export default function AppAssembly() {
     })
 
     const letterElements = currentWord.split("").map((char, idx) => {
-        const toShow = guessedLetters.includes(char) ? char.toUpperCase() : ""
-        return <span key={idx}>{toShow}</span>
+        if (!isGameLost) {
+            const toShow = guessedLetters.includes(char) ? char.toUpperCase() : ""
+            return <span key={idx}>{toShow}</span>
+        }
+        return <span key={idx} className={clsx(!guessedLetters.includes(char) && "missed-letter")}>{char.toUpperCase()}</span >
     })
 
     function addGuessedLetter(char) {
@@ -62,8 +67,8 @@ export default function AppAssembly() {
         return <button
             onClick={() => addGuessedLetter(char)}
             disabled={isGameOver}
-            // aria-disabled={guessedLetters.includes(char)}
-            // aria-label = {`letter: ${char}`}
+            aria-disabled={guessedLetters.includes(char)}
+            aria-label={`letter: ${char}`}
             key={char}
             className={
                 clsx({
@@ -95,8 +100,16 @@ export default function AppAssembly() {
         )
     }
 
+    function resetGame() {
+        setCurrentWord(getRandomWord())
+        setGuessedLetters([])
+    }
+
+    const { width, height } = useWindowSize()
+
     return (
         <main>
+            {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000} />}
             <header>
                 <h1>Assembly: Endgame</h1>
                 <p>Guess the word in under 8 attempts to keep the programming world save from Assembly!</p>
@@ -107,7 +120,7 @@ export default function AppAssembly() {
                 }
             </section>
             <section className="language-chips">
-                {languaeElements}
+                {languageElements}
             </section>
             <section className="word">
                 {letterElements}
@@ -116,7 +129,7 @@ export default function AppAssembly() {
             <section className="sr-only" aria-live="polite" role="status">
                 <p>{
                     currentWord.includes(lastGuessedLetter) ?
-                        `Correct! Letter ${lastGuessedLetter} is in the word.`:
+                        `Correct! Letter ${lastGuessedLetter} is in the word.` :
                         `Sorry the letter ${lastGuessedLetter} is not in the word`
                 }
                     You have {remainingGuesses} attempts left.
@@ -127,7 +140,7 @@ export default function AppAssembly() {
             <section className="keyboard">
                 {keyboardElements}
             </section>
-            {isGameOver && <button className="new-game">New Game</button>}
+            {isGameOver && <button onClick={resetGame} className="new-game">New Game</button>}
         </main>
     )
 }
